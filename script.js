@@ -1,38 +1,38 @@
 //your JS code here. If required.
-const reset = document.getElementById("reset_button");
-const change = document.getElementById("change_button");
+document.addEventListener("DOMContentLoaded", function () {
+    const gridItems = document.querySelectorAll('.grid-item');
+    const blockIdInput = document.getElementById('block_id');
+    const colorIdInput = document.getElementById('colour_id');
+    const changeButton = document.getElementById('change_button');
+    const resetButton = document.getElementById('reset_button');
  
-reset.addEventListener("click", resetGrid);
-change.addEventListener("click", changeColor);
+    // Function to change the color of a specific grid item
+    function changeColor(blockId, color) {
+        const targetBlock = document.getElementById(blockId);
+        if (targetBlock) {
+            targetBlock.style.backgroundColor = color;
+        }
+    }
  
-function resetGrid() {
-  for (let i = 1; i <= 9; i++) {
-    const gridItem = document.getElementById(`${i}`);
-    gridItem.style.backgroundColor = "transparent";
-   // console.log(gridItem);
-  }
-}
+    // Function to reset all grid item colors to transparent
+    function resetGrid() {
+        gridItems.forEach(item => {
+            item.style.backgroundColor = 'transparent';
+        });
+    }
  
-function changeColor() {
-  const blockId = document.getElementById("block_id");
-  const colorId = document.getElementById("colour_id");
+    // Event listener for the Change Color button
+    changeButton.addEventListener('click', function () {
+        const blockId = blockIdInput.value;
+        const color = colorIdInput.value;
+        changeColor(blockId, color);
+        // Reset the input fields
+        blockIdInput.value = '';
+        colorIdInput.value = '';
+    });
  
-  if (!blockId.value) {
-    alert("Please enter block id");
-  }
-  if (!colorId.value) {
-    alert("Please enter colour id");
-  }
-  if (blockId.value>=9) {
-    alert("Invalid block Id");
-  }
- 
-  resetGrid();
-  console.log(blockId.value)
-  const gridItem = document.getElementById(`${blockId.value}`);
-  gridItem.style.backgroundColor = colorId.value;
- 
-  blockId.value = "";
-  colorId.value = "";
-}
+    // Event listener for the Reset button
+    resetButton.addEventListener('click', function () {
+        resetGrid();
+    });
 });
