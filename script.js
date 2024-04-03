@@ -3,7 +3,7 @@ let changeColor = document.getElementById('change_button');
 
 changeColor.addEventListener('click', ()=>{
 	const blockId = document.getElementById('block_id').value;
-	const colorId = document.getElementById('color_id').value;
+	const colorId = document.getElementById('colour_id').value;
 	
 	for (let i = 1; i <= 9; i++) {
 		const gridItem = document.getElementById(i.toString());
@@ -16,8 +16,10 @@ changeColor.addEventListener('click', ()=>{
 	}
 });
 
-let resetColor = document.getElementById('reset');
-resetColor.addEventListener('click', () => {
+let resetColor = document.getElementById('reset_button');
+resetColor.addEventListener('click', (event) => {
+ event.preventDefault();
+	
 	for (let i = 1; i <= 9; i++) {
 		const gridItems = document.getElementById(i.toString());
 		gridItems.style.backgroundColor = 'transparent';
